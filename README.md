@@ -8,5 +8,5 @@ In order to run the app:
 DEMO:
 
 
-https://user-images.githubusercontent.com/83244923/133909733-927ebc45-2f60-48f2-b020-6d9b3319662f.mp4
+https://user-images.githubusercontent.com/83244923/133909751-9615a09e-b2aa-4b91-a1f5-43784738ca7d.mov
 
