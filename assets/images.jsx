@@ -38,5 +38,9 @@ export const images = [
     {
       title: 'Tenth Image',
       image: 'https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500'
-    }
+    },
+    {
+      title: 'Eleven Image',
+      image: 'https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+    },
   ]

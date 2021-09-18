@@ -1,61 +1,63 @@
 import { StyleSheet , Dimensions} from 'react-native';
 
 const {width} = Dimensions.get('window');
-const height = width/3 ;
+const height = width ;
 
 export const styles = StyleSheet.create({
-    container: { 
-        display:'flex',
-        flexDirection:'row',
-        width, 
-        height,
-        justifyContent: 'center'  
-        },
-    buttons:{
-        width, 
-        height,
+    shadow:{
+        backgroundColor: 'rgba(17, 17, 17, 0.2)',
+        position:'relative',
+        top:-4,
+        left:-4,
+        borderRadius: 15,
     },
-    images:{
+    container: { 
+        margin: 5,
         display:'flex',
         flexDirection:'row',
+        width, 
+        },
+    left:{
+        position: "absolute",
+        zIndex:5,
+        elevation:5,   
+        flex:1,
+        top: (height/2 - 45),     
+        left: 0,        
+    },
+    right:{  
+        position: "absolute",
+        zIndex:5,
+        elevation:5,   
+        flex:1,
+        top: (height/2 - 45),     
+        right: 15,  
     },
     imageText:{
-        width:(width/3.2), 
-        height: (height/4),
-        borderRadius: '10px',
+        width:width-15, 
+        height: (height/2 - 55),
+        borderRadius: 15,
         position: 'absolute',
+        flex:1,
         bottom:0,
         textAlign: 'center', 
+        marginRight: 15,
+        fontSize:30,
         color:'#ccc',
         zIndex:2,
+        elevation:2,
         backgroundColor: "rgba(52, 52, 52, 0.7)"
         },
     image: { 
-        width:(width/3.2), 
-        height,
-        borderRadius: '10px', 
-        marginRight:'5px'
+        width, 
+        borderRadius: 15, 
+        marginRight: 15,
+        flex:1,
         },
     pagination: { 
-        width:'fit-content',
         display:'flex',
+        width,
+        flex:1,
         flexDirection:'row',
         },
-    pagingText: { 
-        fontSize: (width/30), 
-        color:'red',
-        margin: 3 
-        },
-    pagingActiveText: { 
-        fontSize: (width/30), 
-        color:'red', 
-        margin: 3 
-        },
-    numbers: {
-        width:200,
-        marginTop:'5px',
-        flexDirection:'row',
-        alignSelf:'center',
-        justifyContent:'space-between'
-        }
 });

@@ -1,26 +1,22 @@
 import React, { Fragment, useState } from 'react';
-import { StyleSheet, Button, Text, Image, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, Image, View, ScrollView,Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from '../Styles/Slider';
 import useLocalStorage from '../useLocalStorage';
-
-
+import { useRef } from 'react';
+import defaultImage from '../assets/defaultImage.jpg'
 export default function Slider({images}){
-    
+   
+const {width} = Dimensions.get('window'); 
 const [active, setActive] = useLocalStorage('currentPage', 1);
 
+const scrollRef = useRef();
 const [state, setState] = useState({
     todos: images,
     currentPage: active?active:1,
     todosPerPage: 3,
   })
 
-  const handleClick = (number) => {
-    setActive(Number(number))
-    setState({
-      ...state,
-      currentPage: Number(number)
-    })
-  }
   const handlePrev = () => {
       if(active>1){
         setActive(state.currentPage-1)
@@ -28,7 +24,15 @@ const [state, setState] = useState({
         ...state,
         currentPage: state.currentPage-1
         })
+        scrollRef.current?.scrollTo({
+          x: 375*3,
+          animated: true,
+        });
       }
+      scrollRef.current?.scrollTo({
+        x: 'end',
+        animated: true,
+      })
     
   }
   const handleNext = () => {
@@ -38,9 +42,13 @@ const [state, setState] = useState({
         ...state,
         currentPage: state.currentPage+1
         })
-      }
-    
+        scrollRef.current?.scrollTo({
+          x: 0,
+          animated: true,
+        });
+      } 
   }
+
     const indexOfLastTodo = (state.currentPage * state.todosPerPage);
     const indexOfFirstTodo = indexOfLastTodo - state.todosPerPage;
     const currentTodos = state.todos.slice(indexOfFirstTodo, indexOfLastTodo);
@@ -48,60 +56,46 @@ const [state, setState] = useState({
         return (
             <View
             key={index}
-            style={styles.pagination}
+            style={[styles.pagination]}
             >
-                <Text 
-                style={styles.imageText}
-                >
-                    {todo.title}
-                </Text>
-                <Image
-                source = {{ uri:todo.image}}
-                style = {styles.image}
-                />
+              <Text 
+              style={styles.imageText}
+              >
+                {todo.title}
+              </Text>
+              <Image
+              source = {{ uri:todo.image}}
+              style = {styles.image}
+              />
             </View>
       );
     });
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(state.todos.length / state.todosPerPage); i++) {
-      pageNumbers.push(i);
-    }
-
-    const renderPageNumbers = pageNumbers.map((number) => {
-        return (
-            <Button
-            key={number}
-            id={number}
-            onPress={()=>handleClick(number)}
-            style={number===active?styles.pagingActiveText:styles.pagingText}
-            title= {number}
-            />
-        )
-    });
-
     
   return (
-    <View style={styles.container}>
       
-        {active!==1 &&<Button onPress={handlePrev} title="<" style={styles.buttons}/>}
-        <View>
-            <View style={{flexDirection:'row'}}>
-                {
-                    renderTodos
-                }
-            </View>
-            
-            <View style={styles.numbers}>
-                {
-                renderPageNumbers
-            }
-            </View>
-            
-        </View>
+      <ScrollView ref={scrollRef} horizontal style={styles.container}>
+        {active!==1 &&
+          <Icon
+              name="arrow-left"
+              size={90}
+              color="rgba(55, 55, 55, 0.8)"
+              onPress={handlePrev} 
+              style={styles.left}
+          />
+        }
+        {
+            renderTodos
+        }
         
-        {active!==Math.ceil(state.todos.length / state.todosPerPage)&&<Button onPress={handleNext} title=">" style={styles.buttons}/>}
-        
-    </View>
+        {active!==Math.ceil(state.todos.length / state.todosPerPage)&&
+        <Icon
+          name="arrow-right"
+          size={90}
+          color="rgba(55, 55, 55, 0.8)"
+          onPress={handleNext}
+          style={styles.right}
+        />
+        }
+        </ScrollView>
   )
 }
-
