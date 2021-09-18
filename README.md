@@ -6,6 +6,8 @@ In order to run the app:
 
 2- `npm start`
 
+3- `Choose how to preview, iOS, Android, Web Server`
+
 DEMO:
 
 
