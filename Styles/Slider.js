@@ -34,9 +34,12 @@ export const styles = StyleSheet.create({
         right: 15,  
     },
     imageText:{
-        width:width-15, 
+        width:(width*0.6)-15, 
         height: (height/2 - 55),
-        borderRadius: 15,
+        borderRadius:15, 
+        overflow: 'hidden',
+        borderBottomLeftRadius:15,
+        borderBottomRightRadius:15,
         position: 'absolute',
         flex:1,
         bottom:0,
@@ -49,14 +52,15 @@ export const styles = StyleSheet.create({
         backgroundColor: "rgba(52, 52, 52, 0.7)"
         },
     image: { 
-        width, 
+        width,
+        resizeMode:'contain',
         borderRadius: 15, 
         marginRight: 15,
         flex:1,
         },
     pagination: { 
         display:'flex',
-        width,
+        width:(width*0.9),      
         flex:1,
         flexDirection:'row',
         },

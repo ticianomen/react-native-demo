@@ -57,7 +57,9 @@ const [state, setState] = useState({
             <View
             key={index}
             style={[styles.pagination]}
-            >
+            ><View>
+              
+            </View>
               <Text 
               style={styles.imageText}
               >
@@ -73,7 +75,11 @@ const [state, setState] = useState({
     
   return (
       
-      <ScrollView ref={scrollRef} horizontal style={styles.container}>
+      <ScrollView 
+      ref={scrollRef} 
+      horizontal 
+      pagingEnabled
+      style={styles.container}>
         {active!==1 &&
           <Icon
               name="arrow-left"
