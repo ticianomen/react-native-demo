@@ -16,6 +16,6 @@ export default function App () {
 }
 
 const styles = StyleSheet.create({
-  container: { marginTop: 50, width, height },
+  container: { marginTop: 30, width, height },
 });
 

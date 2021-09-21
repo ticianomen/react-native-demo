@@ -1,28 +1,22 @@
 import { StyleSheet , Dimensions} from 'react-native';
 
 const {width} = Dimensions.get('window');
-const height = width ;
+const CARD_WIDTH = Dimensions.get('window').width * 0.8
+const CARD_HEIGHT = Dimensions.get('window').width * 0.7
+const SPACING_FOR_CARD_INSET = Dimensions.get('window').width * 0.1 - 10
 
 export const styles = StyleSheet.create({
-    shadow:{
-        backgroundColor: 'rgba(17, 17, 17, 0.2)',
-        position:'relative',
-        top:-4,
-        left:-4,
-        borderRadius: 15,
-    },
     container: { 
-        margin: 5,
-        display:'flex',
-        flexDirection:'row',
-        width, 
+        flex: 1,
+        height:CARD_HEIGHT,
+        justifyContent: 'center',
         },
     left:{
         position: "absolute",
         zIndex:5,
         elevation:5,   
         flex:1,
-        top: (height/2 - 45),     
+        top: (CARD_HEIGHT/2 - 45),     
         left: 0,        
     },
     right:{  
@@ -30,12 +24,12 @@ export const styles = StyleSheet.create({
         zIndex:5,
         elevation:5,   
         flex:1,
-        top: (height/2 - 45),     
-        right: 15,  
+        top: (CARD_HEIGHT/2 - 45),     
+        right: SPACING_FOR_CARD_INSET,  
     },
     imageText:{
-        width:(width*0.6)-15, 
-        height: (height/2 - 55),
+        width:(CARD_WIDTH), 
+        height: (CARD_HEIGHT/2 - 15),
         borderRadius:15, 
         overflow: 'hidden',
         borderBottomLeftRadius:15,
@@ -43,8 +37,8 @@ export const styles = StyleSheet.create({
         position: 'absolute',
         flex:1,
         bottom:0,
+        right: 14,
         textAlign: 'center', 
-        marginRight: 15,
         fontSize:30,
         color:'#ccc',
         zIndex:2,
@@ -52,16 +46,20 @@ export const styles = StyleSheet.create({
         backgroundColor: "rgba(52, 52, 52, 0.7)"
         },
     image: { 
-        width,
-        resizeMode:'contain',
+        width: CARD_WIDTH,
+        height: CARD_HEIGHT,
+        resizeMode:'cover',
         borderRadius: 15, 
-        marginRight: 15,
+        marginRight: SPACING_FOR_CARD_INSET,
         flex:1,
         },
     pagination: { 
         display:'flex',
-        width:(width*0.9),      
-        flex:1,
-        flexDirection:'row',
+        width: CARD_WIDTH,
+        height: CARD_HEIGHT,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 10,
+        borderRadius: 15
         },
 });

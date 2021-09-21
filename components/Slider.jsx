@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { StyleSheet, Text, Image, View, ScrollView,Dimensions } from 'react-native';
+import { StyleSheet, Text, Image, View, ScrollView,Dimensions,Platform, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from '../Styles/Slider';
 import useLocalStorage from '../useLocalStorage';
@@ -7,7 +7,8 @@ import { useRef } from 'react';
 import defaultImage from '../assets/defaultImage.jpg'
 export default function Slider({images}){
    
-const {width} = Dimensions.get('window'); 
+const CARD_WIDTH = Dimensions.get('window').width * 0.8
+const SPACING_FOR_CARD_INSET = Dimensions.get('window').width * 0.1 
 const [active, setActive] = useLocalStorage('currentPage', 1);
 
 const scrollRef = useRef();
@@ -48,7 +49,6 @@ const [state, setState] = useState({
         });
       } 
   }
-
     const indexOfLastTodo = (state.currentPage * state.todosPerPage);
     const indexOfFirstTodo = indexOfLastTodo - state.todosPerPage;
     const currentTodos = state.todos.slice(indexOfFirstTodo, indexOfLastTodo);
@@ -56,10 +56,8 @@ const [state, setState] = useState({
         return (
             <View
             key={index}
-            style={[styles.pagination]}
-            ><View>
-              
-            </View>
+            style={styles.pagination}
+            >
               <Text 
               style={styles.imageText}
               >
@@ -74,12 +72,27 @@ const [state, setState] = useState({
     });
     
   return (
-      
-      <ScrollView 
-      ref={scrollRef} 
-      horizontal 
-      pagingEnabled
-      style={styles.container}>
+    <React.Fragment>
+      <SafeAreaView style={styles.container}>
+        <ScrollView 
+          ref={scrollRef} 
+          horizontal // Change the direction to horizontal
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          pagingEnabled // Enable paging
+          decelerationRate={'fast'} // Disable deceleration
+          snapToInterval={CARD_WIDTH+10} // Calculate the size for a card including marginLeft and marginRight
+          snapToAlignment='center' // Snap to the center
+          contentInset={{ // iOS ONLY
+            left: SPACING_FOR_CARD_INSET, // Left spacing for the very first card
+            right: SPACING_FOR_CARD_INSET // Right spacing for the very last card
+          }}
+          contentContainerStyle={{
+            
+            display:'flex', // contentInset alternative for Android
+            paddingHorizontal: (Platform.OS === 'android' || Platform.OS === 'web' )? SPACING_FOR_CARD_INSET : 0 // Horizontal spacing before and after the ScrollView
+          }}
+        >
         {active!==1 &&
           <Icon
               name="arrow-left"
@@ -103,5 +116,9 @@ const [state, setState] = useState({
         />
         }
         </ScrollView>
+      </SafeAreaView>
+    </React.Fragment>
+      
+      
   )
 }
