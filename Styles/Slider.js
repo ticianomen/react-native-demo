@@ -1,4 +1,4 @@
-import { StyleSheet , Dimensions} from 'react-native';
+import { StyleSheet , Dimensions, Platform} from 'react-native';
 
 const {width} = Dimensions.get('window');
 const CARD_WIDTH = Dimensions.get('window').width * 0.8
@@ -7,29 +7,30 @@ const SPACING_FOR_CARD_INSET = Dimensions.get('window').width * 0.1 - 10
 
 export const styles = StyleSheet.create({
     container: { 
+        marginTop:30,
         flex: 1,
         height:CARD_HEIGHT,
         justifyContent: 'center',
         },
     left:{
         position: "absolute",
+        left: (Platform.OS === 'android' || Platform.OS === 'web' )? SPACING_FOR_CARD_INSET+10 : 0,
         zIndex:5,
         elevation:5,  
         backgroundColor:'rgba(255, 255, 255, 0.5)',
         borderRadius:50,
         flex:1,
-        top: (CARD_HEIGHT/2 - 20),     
-        left: 0,        
+        top: (CARD_HEIGHT/2 - 20),           
     },
     right:{  
         position: "absolute",
+        right: (Platform.OS === 'android' || Platform.OS === 'web' )? SPACING_FOR_CARD_INSET*2+10 : SPACING_FOR_CARD_INSET,
         zIndex:5,
         elevation:5,   
         backgroundColor:'rgba(255, 255, 255, 0.5)',
         borderRadius:50,
         flex:1,
-        top: (CARD_HEIGHT/2 - 20),        
-        right: SPACING_FOR_CARD_INSET,  
+        top: (CARD_HEIGHT/2 - 20),      
     },
     imageText:{
         width:(CARD_WIDTH), 

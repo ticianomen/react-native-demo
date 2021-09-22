@@ -75,21 +75,21 @@ const [state, setState] = useState({
       <SafeAreaView style={styles.container}>
         <ScrollView 
           ref={scrollRef} 
-          horizontal // Change the direction to horizontal
+          horizontal 
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          pagingEnabled // Enable paging
-          decelerationRate={'fast'} // Disable deceleration
-          snapToInterval={CARD_WIDTH+10} // Calculate the size for a card including marginLeft and marginRight
-          snapToAlignment='center' // Snap to the center
-          contentInset={{ // iOS ONLY
-            left: SPACING_FOR_CARD_INSET, // Left spacing for the very first card
-            right: SPACING_FOR_CARD_INSET // Right spacing for the very last card
+          pagingEnabled
+          decelerationRate={'fast'} 
+          snapToInterval={CARD_WIDTH+10} 
+          snapToAlignment='center' 
+          contentInset={{ 
+            left: SPACING_FOR_CARD_INSET, 
+            right: SPACING_FOR_CARD_INSET 
           }}
           contentContainerStyle={{
             
-            display:'flex', // contentInset alternative for Android
-            paddingHorizontal: (Platform.OS === 'android' || Platform.OS === 'web' )? SPACING_FOR_CARD_INSET : 0 // Horizontal spacing before and after the ScrollView
+            display:'flex', 
+            paddingHorizontal: (Platform.OS === 'android' || Platform.OS === 'web' )? SPACING_FOR_CARD_INSET : 0
           }}
         >
         {active!==1 &&
