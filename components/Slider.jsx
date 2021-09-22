@@ -14,7 +14,7 @@ const scrollRef = useRef();
 const [state, setState] = useState({
     todos: images,
     currentPage: active?active:1,
-    todosPerPage: 3,
+    todosPerPage: images.length,
   })
 
   const handlePrev = () => {
