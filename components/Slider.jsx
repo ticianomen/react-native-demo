@@ -25,7 +25,7 @@ const [state, setState] = useState({
         currentPage: state.currentPage-1
         })
         scrollRef.current?.scrollTo({
-          x: 375*3,
+          x: CARD_WIDTH*3,
           animated: true,
         });
       }
