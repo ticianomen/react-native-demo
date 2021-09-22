@@ -1,10 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import { StyleSheet, Text, Image, View, ScrollView,Dimensions,Platform, SafeAreaView } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Entypo';
 import { styles } from '../Styles/Slider';
 import useLocalStorage from '../useLocalStorage';
 import { useRef } from 'react';
-import defaultImage from '../assets/defaultImage.jpg'
 export default function Slider({images}){
    
 const CARD_WIDTH = Dimensions.get('window').width * 0.8
@@ -94,26 +93,28 @@ const [state, setState] = useState({
           }}
         >
         {active!==1 &&
-          <Icon
-              name="arrow-left"
-              size={90}
+          <View style={styles.left}>
+            <Icon
+              name="chevron-small-left"
+              size={40}
               color="rgba(55, 55, 55, 0.8)"
               onPress={handlePrev} 
-              style={styles.left}
           />
+          </View>
         }
         {
             renderTodos
         }
         
         {active!==Math.ceil(state.todos.length / state.todosPerPage)&&
-        <Icon
-          name="arrow-right"
-          size={90}
+        <View style={styles.right}>
+          <Icon
+          name="chevron-small-right"
+          size={40}
           color="rgba(55, 55, 55, 0.8)"
           onPress={handleNext}
-          style={styles.right}
         />
+          </View>
         }
         </ScrollView>
       </SafeAreaView>
