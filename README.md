@@ -15,6 +15,5 @@ In order to run the app:
 
 ### DEMO
 
-
-https://user-images.githubusercontent.com/83244923/133909751-9615a09e-b2aa-4b91-a1f5-43784738ca7d.mov
+https://user-images.githubusercontent.com/83244923/134272162-685d7b32-9ece-4990-ba35-2a973ae48a5f.mp4
 
